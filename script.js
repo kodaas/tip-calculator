@@ -1,3 +1,6 @@
+Number.prototype.round = function(places) {
+  return +(Math.round(this + "e+" + places)  + "e-" + places);
+}
 
 function getInput() {
     let form = document.forms[0];
@@ -129,8 +132,10 @@ function Calculate({bill, tip, custom, numPeople}) {
     
     let roundAmountValue = Math.fround(((persent / 100) * bill) / numPeople);
     
-    let amount = Aproximate(roundAmountValue,2);
-    let total = Aproximate((amount * numPeople), 2);
+//    let amount = Aproximate(roundAmountValue,2);
+    let amount = roundAmountValue.round(2)
+//    let total = Aproximate((amount * numPeople), 2);
+    let total = (amount * numPeople).round(2)
     
     return ({
         amount,
